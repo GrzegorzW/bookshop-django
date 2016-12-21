@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Books</title>
-</head>
-<body>
-{% if book_list %}
-    <ul>
-    {% for book in book_list %}
-        <li>{{ book.title }}, {{ book.author }}</li>
-    {% endfor %}
-    </ul>
-    <span>
+{% extends "base.html" %}
+
+{% block title %}
+    Books
+{% endblock %}
+
+{% block content %}
+    {% if book_list %}
+        <ul>
+            {% for book in book_list %}
+                <li>{{ book.title }}, {{ book.author }}</li>
+            {% endfor %}
+        </ul>
+        <span>
     We have {{ book_list.count }} books in our store.
     </span>
-{% else %}
-    <p>No books are available.</p>
-{% endif %}
-</body>
-
-</html>
+    {% else %}
+        <p>No books are available.</p>
+    {% endif %}
+{% endblock %}

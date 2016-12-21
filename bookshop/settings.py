@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'store.apps.StoreConfig',
     'books.apps.BooksConfig',
     'django.contrib.admin',
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REGISTRATION_AUTO_LOGIN = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

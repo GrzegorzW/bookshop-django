@@ -1,0 +1,4 @@
+Django==1.10.4
+django-money==0.10
+django-registration-redux==1.4
+py-moneyed==0.6.0
