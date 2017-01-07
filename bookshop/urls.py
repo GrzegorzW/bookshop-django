@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^store/', include('store.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^$', TemplateView.as_view(template_name='../templates/bookshop/main.html'), name="home"),
 ]
