@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^store/', include('store.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^$', TemplateView.as_view(template_name='../templates/bookshop/main.html'), name="home"),
 ]

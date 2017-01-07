@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 REGISTRATION_AUTO_LOGIN = True
+ACCOUNT_ACTIVATION_DAYS = 7
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -124,3 +125,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_HOST = 'mailtrap.io'
+EMAIL_HOST_USER = '0bc6887cc0753a'
+EMAIL_HOST_PASSWORD = '4db3f2507ada9a'
+EMAIL_PORT = '2525'
+
+LOGIN_REDIRECT_URL = '/'
