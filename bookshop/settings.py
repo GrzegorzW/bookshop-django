@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'registration',
+    'shoes.apps.ShoesConfig',
     'store.apps.StoreConfig',
     'books.apps.BooksConfig',
     'django.contrib.admin',
