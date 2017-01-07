@@ -6,6 +6,6 @@
 
 {% block content %}
     <h1>
-        Welcome!
+        Welcome {{ request.user.get_full_name }}!
     </h1>
 {% endblock %}
