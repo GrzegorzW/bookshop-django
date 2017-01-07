@@ -6,11 +6,29 @@
 
 {% block content %}
     {% if book_list %}
-        <ul>
+        <table id="t01">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Descrpiton</th>
+                <th>Publication year</th>
+                <th>Price</th>
+                <th>Currency</th>
+                <th>Available amount</th>
+            </tr>
             {% for book in book_list %}
-                <li>{{ book.title }}, {{ book.author }}</li>
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.description }}</td>
+                    <td>{{ book.publication_year }}</td>
+                    <td>{{ book.price }}</td>
+                    <td>{{ book.price_currency }}</td>
+                    <td>{{ book.stock }}</td>
+
+                </tr>
             {% endfor %}
-        </ul>
+        </table>
         <span>
             We have {{ book_list.count }} book{{ book_list.count|pluralize }} in our store.
         </span>
