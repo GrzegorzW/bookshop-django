@@ -56,12 +56,14 @@
                     {% for book in books %}
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
-                                <img src="http://placehold.it/320x150" alt="">
+                                <a href="{% url 'book' book.id %}">
+                                    <img src="http://placehold.it/320x150" alt="">
+                                </a>
                                 <div class="caption">
                                     <h4 class="pull-right">
                                         {{ book.price }}
                                     </h4>
-                                    <h4><a href="#">{{ book.title|truncatechars:20 }}</a>
+                                    <h4><a href="{% url 'book' book.id %}">{{ book.title|truncatechars:20 }}</a>
                                     </h4>
                                     <p>
                                         {{ book.short_description|truncatechars:60 }}
@@ -81,6 +83,10 @@
                                     </p>
                                 </div>
                             </div>
+                        </div>
+                    {% empty %}
+                        <div class="jumbotron text-center">
+                            Books not found
                         </div>
                     {% endfor %}
                 </div>

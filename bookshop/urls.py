@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^store/', include('store.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
 ]

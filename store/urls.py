@@ -19,5 +19,6 @@ from . import views
 
 
 urlpatterns = [
+    url(r'^books/(?P<book_id>[0-9]+)$', views.book, name='book'),
     url(r'^books/$', views.books, name='book_list'),
 ]

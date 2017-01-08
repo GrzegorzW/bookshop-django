@@ -9,12 +9,21 @@ def books(request):
 
     genre = Genre.objects.filter(id=genre_id)
     if genre:
-        book_list = Book.objects.filter(genre=genre)
+        books = Book.objects.filter(genre=genre)
     else:
-        book_list = Book.objects.all()
+        books = Book.objects.all()
+
+    genres = Genre.objects.filter(enabled=True)
 
     context = {
-        'books': book_list,
-        'genres': Genre.objects.all,
+        'books': books,
+        'genres': genres,
     }
     return render(request, 'store/books.html', context)
+
+
+def book(request, book_id):
+    context = {
+        'book': Book.objects.get(id=book_id)
+    }
+    return render(request, 'store/book.html', context)
