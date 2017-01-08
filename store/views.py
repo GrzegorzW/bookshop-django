@@ -1,11 +1,20 @@
 from django.shortcuts import render
 
 from books.models import Book
+from genre.models import Genre
 
 
 def books(request):
-    book_list = Book.objects.all()
+    genre_id = request.GET.get('genre')
+
+    genre = Genre.objects.filter(id=genre_id)
+    if genre:
+        book_list = Book.objects.filter(genre=genre)
+    else:
+        book_list = Book.objects.all()
+
     context = {
-        'book_list': book_list,
+        'books': book_list,
+        'genres': Genre.objects.all,
     }
     return render(request, 'store/books.html', context)

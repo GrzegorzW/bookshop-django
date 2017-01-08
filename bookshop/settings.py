@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'registration',
-    'shoes.apps.ShoesConfig',
+    'genre.apps.GenreConfig',
     'store.apps.StoreConfig',
     'books.apps.BooksConfig',
     'django.contrib.admin',
@@ -145,4 +145,8 @@ LOGIN_REDIRECT_URL = '/'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
 )
