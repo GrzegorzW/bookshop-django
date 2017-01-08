@@ -155,3 +155,6 @@ STATICFILES_DIRS = (
 TINYMCE_DEFAULT_CONFIG = {
     'theme': "advanced",
 }
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/media/'

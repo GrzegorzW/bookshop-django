@@ -13,12 +13,12 @@
             <div class="col-md-12">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                    <img class="img-responsive book-cover-image" src="{{ book.cover_image.url }}"
+                         alt="{{ book.title }} cover image">
                     <div class="caption-full">
                         <h4 class="pull-right">
-                            {% if book.stock %}
-                                {{ book.price }}
-                            {% else %}
+                            {{ book.price }}
+                            {% if not book.stock %}
                                 <span class="text-danger">
                                     Unavailable
                                 </span>

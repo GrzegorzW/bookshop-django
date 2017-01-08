@@ -17,6 +17,8 @@ class Book(models.Model):
     price = MoneyField(max_digits=8, decimal_places=2, default_currency='PLN')
     stock = models.IntegerField(default=0)
     genre = models.ForeignKey(Genre, related_name='genre')
+    thumbnail = models.ImageField()
+    cover_image = models.ImageField()
 
     def __str__(self):
         return self.title + ' ' + self.author

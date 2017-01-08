@@ -1,0 +1,9 @@
+.book-thumbnail {
+    max-height: 150px;
+    width: auto !important;
+}
+
+.book-cover-image {
+    max-height: 300px;
+    width: auto !important;
+}
