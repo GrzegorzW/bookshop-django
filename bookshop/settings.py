@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'widget_tweaks',
+    'django_comments',
     'tinymce',
     'registration',
     'genre.apps.GenreConfig',

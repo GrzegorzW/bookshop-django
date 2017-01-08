@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% load comments %}
+{% load widget_tweaks %}
+
 {% block title %}
     Bookshop - {{ book.title }}
 {% endblock %}
@@ -7,11 +10,8 @@
 {% block content %}
 
     <div class="container">
-
         <div class="row">
-
             <div class="col-md-12">
-
                 <div class="thumbnail">
                     <img class="img-responsive book-cover-image" src="{{ book.cover_image.url }}"
                          alt="{{ book.title }} cover image">
@@ -32,76 +32,73 @@
                         </p>
                     </div>
                     <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
                         <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
+                            {% get_comment_count for book as comment_count %}
+                            {{ comment_count }} comment{{ comment_count|pluralize }} have been posted.
                         </p>
                     </div>
                 </div>
-
                 <div class="well">
-
                     <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                            Leave a comment
+                        </button>
                     </div>
-
                     <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                    {% get_comment_list for book as comment_list %}
+                    {% for comment in comment_list %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <strong>{{ comment.user_name }}</strong>
+                                <span class="pull-right">on {{ comment.submit_date }}</span>
+                                <p>{{ comment.comment }}</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this
-                                item.</p>
-                        </div>
-                    </div>
-
+                        <hr>
+                    {% empty %}
+                        No comments
+                    {% endfor %}
                 </div>
-
             </div>
-
         </div>
+    </div>
 
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Leave a comment</h4>
+                </div>
+                {% if user.is_authenticated %}
+                    {% get_comment_form for book as form %}
+                    <form class="form-horizontal" action="{% comment_form_target %}" method="post">
+                        <div class="modal-body">
+                            {% csrf_token %}
+                            {{ form.comment|add_class:"form-control" }}
+                            {{ form.honeypot }}
+                            {{ form.content_type }}
+                            {{ form.object_pk }}
+                            {{ form.timestamp }}
+                            {{ form.security_hash }}
+                            <input type="hidden" name="next" value="{% url 'book' book.id %}"/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <input class="btn btn-primary" type="submit" value="Add comment" id="id_submit"/>
+                        </div>
+                    </form>
+                {% else %}
+                    <div class="modal-body">
+                        <p>Please <a href="{% url 'auth_login' %}">log in</a> to leave a comment.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
 
 {% endblock %}

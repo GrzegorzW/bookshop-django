@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load comments %}
+
 {% block title %}
     Bookshop
 {% endblock %}
@@ -74,13 +76,9 @@
                                     </p>
                                 </div>
                                 <div class="ratings">
-                                    <p class="pull-right">15 reviews</p>
                                     <p>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
+                                        {% get_comment_count for book as comment_count %}
+                                        {{ comment_count }} comment{{ comment_count|pluralize }}
                                     </p>
                                 </div>
                             </div>
