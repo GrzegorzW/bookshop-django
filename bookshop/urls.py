@@ -21,6 +21,7 @@ from django.contrib import admin
 urlpatterns = [
                   url(r'^accounts/', include('registration.backends.default.urls')),
                   url(r'^store/', include('store.urls')),
+                  url(r'^contact/', include('contact.urls')),
                   url(r'^admin/', admin.site.urls),
                   url(r'^accounts/', include('allauth.urls')),
                   url(r'^tinymce/', include('tinymce.urls')),

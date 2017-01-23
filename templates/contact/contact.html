@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Contact
+{% endblock %}
+
+{% block css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/one-page-wonder.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+    <header class="header-image" style="background: url({{ contact.logo.url }}) no-repeat center center scroll;">
+        <div class="headline">
+            <div class="container">
+                <h1>{{ contact.jingle }}</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <hr class="featurette-divider">
+        <div class="featurette" id="about">
+            <img class="featurette-image img-circle img-responsive pull-right"
+                 src="{{ contact.smallLogo.url }}" style="max-width: 500px; max-height: 500px;">
+            <h2 class="featurette-heading">
+                {{ contact.title }}
+            </h2>
+            <p class="lead">{{ contact.about }}</p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="featurette" id="services">
+            <img class="featurette-image img-circle img-responsive pull-left"
+                 src="{{ contact.map.url }}" style="max-width: 500px; max-height: 500px;">
+            <h2 class="featurette-heading">
+                {{ contact.city }}
+            </h2>
+            <p class="lead">{{ contact.street }}</p>
+            <p class="lead">{{ contact.post_code }}</p>
+            <p class="lead">{{ contact.phone }}</p>
+        </div>
+    </div>
+
+{% endblock %}
