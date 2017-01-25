@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import Contact
+from .models import Contact, Message
 
 
 @admin.register(Contact)
-class GenreAdmin(admin.ModelAdmin):
+class ContactAdmin(admin.ModelAdmin):
     list_display = (
         'title',
         'about',
@@ -15,4 +15,13 @@ class GenreAdmin(admin.ModelAdmin):
         'logo',
         'smallLogo',
         'active'
+    )
+
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'content',
+        'created_at'
     )

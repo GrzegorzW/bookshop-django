@@ -18,7 +18,10 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 
+from store.views import books
+
 urlpatterns = [
+                  url(r'^$', books),
                   url(r'^accounts/', include('registration.backends.default.urls')),
                   url(r'^store/', include('store.urls')),
                   url(r'^contact/', include('contact.urls')),

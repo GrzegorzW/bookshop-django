@@ -31,7 +31,6 @@
         </div>
 
         <hr class="featurette-divider">
-
         <div class="featurette" id="services">
             <img class="featurette-image img-circle img-responsive pull-left"
                  src="{{ contact.map.url }}" style="max-width: 500px; max-height: 500px;">
@@ -41,6 +40,17 @@
             <p class="lead">{{ contact.street }}</p>
             <p class="lead">{{ contact.post_code }}</p>
             <p class="lead">{{ contact.phone }}</p>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="featurette" id="about">
+            {% load bootstrap %}
+            <h3>Contact us</h3>
+            <form action="{% url 'contact' %}" method="post">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            </form>
         </div>
     </div>
 
