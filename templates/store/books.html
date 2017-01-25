@@ -44,9 +44,11 @@
                                     {% for book in books|slice:":3" %}
                                         {% if book.cover_image.url %}
                                             <div class="item {% if forloop.first %}active{% endif %}">
-                                                <img class="slide-image" src="{{ book.cover_image.url }}"
-                                                     alt="{{ book.cover.title }}"
-                                                     style="max-width: 100%; max-height: 300px; height: auto; size: auto">
+                                                <a href="{% url 'book' book.id %}">
+                                                    <img class="slide-image" src="{{ book.cover_image.url }}"
+                                                         alt="{{ book.cover.title }}"
+                                                         style="max-width: 100%; max-height: 300px; height: auto; size: auto">
+                                                </a>
                                             </div>
                                         {% else %}
                                             <div class="item active">
